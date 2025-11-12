@@ -6,7 +6,8 @@
 // ----------------------
 // Função: Registrar novo usuário
 // ----------------------
-int registro() {
+int registro() 
+{
     char cpf[40], nome[100], sobrenome[100], cargo[100], arquivo[50];
     FILE *file;
 
@@ -81,7 +82,8 @@ int consulta() {
 // ----------------------
 // Função: Deletar registro
 // ----------------------
-int deletar() {
+int deletar() 
+{
     char cpf[40], arquivo[50];
 
     printf("Digite o CPF a ser deletado: ");
@@ -104,45 +106,62 @@ int deletar() {
 // ----------------------
 int main() {
     int opcao = 0;
-    setlocale(LC_ALL, "Portuguese");
+    char senhadigitada[20];
 
-    do {
-        system("cls");
+    printf("===== CARTÓRIO DE MANGUINHOS =====\n\n");
+    printf("Login de administrador\n\nDigite a sua senha: ");
+    scanf("%s", senhadigitada);
 
-        printf("===== CARTÓRIO DE MANGUINHOS =====\n\n");
-        printf("1 - Registrar Nomes\n");
-        printf("2 - Consultar Nomes\n");
-        printf("3 - Deletar Nomes\n");
-        printf("0 - Sair\n");
-        printf("\nEscolha uma opção: ");
-        if (scanf("%d", &opcao) != 1) {
-            // entrada inválida: limpar buffer e continuar
-            while (getchar() != '\n');
-            opcao = -1;
-        }
+    // Correção da comparação de strings
+    if (strcmp(senhadigitada, "admin") == 0) {
+        // Senha correta
+        setlocale(LC_ALL, "Portuguese");
 
-        system("cls");
+        do {
+            system("cls");
 
-        switch (opcao) {
-            case 1:
-                registro();
-                break;
-            case 2:
-                consulta();
-                break;
-            case 3:
-                deletar();
-                break;
-            case 0:
-                printf("Encerrando o programa...\n");
-                break;
-            default:
-                printf("Opção inválida! Tente novamente.\n");
-                system("pause");
-                break;
-        }
-    } while (opcao != 0);
+            printf("===== CARTÓRIO DE MANGUINHOS =====\n\n");
+            printf("1 - Registrar Nomes\n");
+            printf("2 - Consultar Nomes\n");
+            printf("3 - Deletar Nomes\n");
+            printf("0 - Sair\n");
+            printf("\nEscolha uma opção: ");
+            if (scanf("%d", &opcao) != 1) {
+                // entrada inválida: limpar buffer e continuar
+                while (getchar() != '\n');
+                opcao = -1;
+            }
+
+            system("cls");
+
+            switch (opcao) {
+                case 1:
+                    registro();
+                    break;
+                case 2:
+                    consulta();
+                    break;
+                case 3:
+                    deletar();
+                    break;
+                case 0:
+                    printf("Encerrando o programa...\n");
+                    break;
+                default:
+                    printf("Opção inválida! Tente novamente.\n");
+                    system("pause");
+                    break;
+            }
+        } while (opcao != 0);
+    } 
+    else {
+        // Senha incorreta
+        printf("\nSenha incorreta! Acesso negado.\n");
+        system("pause");
+    }
 
     return 0;
 }
+
+
 
